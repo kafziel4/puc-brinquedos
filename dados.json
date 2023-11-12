@@ -1,0 +1,57 @@
+[
+  {
+    "categoria": "Action Figures",
+    "brinquedos": [
+      {
+        "nome": "Lion-O",
+        "imagem": "imgs/toy_001.jpg",
+        "whatsapp": "31999999999",
+        "valor": "R$ 100,00"
+      },
+      {
+        "nome": "Exemplo Brinquedo 2",
+        "imagem": "imgs/toy_002.jpg",
+        "whatsapp": "31999999999",
+        "valor": "R$ 200,00"
+      }
+    ]
+  },
+  {
+    "categoria": "Pelúcias",
+    "brinquedos": [
+      {
+        "nome": "Exemplo Brinquedo 3",
+        "imagem": "imgs/toy_003.jpg",
+        "whatsapp": "31999999999",
+        "valor": "R$ 50,00"
+      },
+      {
+        "nome": "Exemplo Brinquedo 4",
+        "imagem": "imgs/toy_004.jpg",
+        "whatsapp": "31999999999",
+        "valor": "R$ 10,00"
+      }
+    ]
+  },
+  {
+    "categoria": "Veículos",
+    "brinquedos": [
+      {
+        "nome": "Exemplo Brinquedo 5",
+        "imagem": "imgs/toy_005.jpg",
+        "whatsapp": "31999999999",
+        "valor": "R$ 150,00"
+      },
+      {
+        "nome": "Exemplo Brinquedo 6",
+        "imagem": "imgs/toy_006.jpg",
+        "whatsapp": "31999999999",
+        "valor": "R$ 120,00"
+      }
+    ]
+  },
+  {
+    "categoria": "Categoria Vazia",
+    "brinquedos": []
+  }
+]

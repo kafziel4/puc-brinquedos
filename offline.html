@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>App Storm</title>
+
+  <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <link href="manifest.json" rel="manifest">
+
+  <!-- iOS meta tags and icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="App Storm">
+  <link rel="apple-touch-icon" href="icons/152.png">
+
+  <meta name="description" content="App Storm">
+  <meta name="theme-color" content="#f8931d" />
+</head>
+
+<body>
+  <header class="container-fluid fixed-top">
+    <img src="imgs/logo.png" class="logo">
+  </header>
+
+  <section class="container" style="margin-top: 100px;">
+    <div class="row">
+      <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+          <img src="imgs/offline.png" width="30">
+          Você está acessando este app offline. Veja os últimos itens visitados.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" id="content" style="margin-top: 10px;">
+  </main>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    const ajax = new XMLHttpRequest();
+
+    ajax.open('GET', './dados.json', true);
+
+    ajax.send();
+
+    ajax.onreadystatechange = function () {
+      const content = document.getElementById('content');
+
+      if (this.readyState == 4 && this.status == 200) {
+        const jsonData = JSON.parse(ajax.responseText);
+
+        if (jsonData.length == 0) {
+          content.innerHTML = `<div class="alert alert-warning" role="alert">
+        Desculpe. Ainda não temos brinquedos cadastrados!
+      </div>`;
+        } else {
+          let htmlContent = '';
+
+          for (let i = 0; i < jsonData.length; i++) {
+            htmlContent += `<div class="row">
+          <div class="col-12">
+            <h2><span></span>${jsonData[i].categoria}</h2>
+          </div>
+        </div>`;
+
+            if (jsonData[i].brinquedos.length == 0) {
+              htmlContent += `<div class="row">
+            <div class="col-12">
+              <div class="alert alert-warning" role="alert">
+                Desculpe. Não temos brinquedos para esta categoria.
+              </div>
+            </div>
+          </div>`;
+            } else {
+              htmlContent += `<div class="row">`;
+
+              for (let j = 0; j < jsonData[i].brinquedos.length; j++) {
+                htmlContent += cardBrinquedo(jsonData[i].brinquedos[j]);
+              }
+
+              htmlContent += `</div>`;
+            }
+          }
+
+          content.innerHTML = htmlContent;
+        }
+      }
+    };
+
+    const cardBrinquedo = (brinquedo) => {
+      return `<div class="col-lg-6">
+    <div class="card">
+      <img src="${brinquedo.imagem}" class="card-img-top" alt="${brinquedo.nome}">
+      <div class="card-body">
+        <h5 class="card-title">${brinquedo.nome}</h5>
+        <p class="card-text"><strong>Valor:</strong> ${brinquedo.valor}</p>
+      </div>
+    </div>
+  </div>`;
+    };
+  </script>
+</body>
+
+</html>
